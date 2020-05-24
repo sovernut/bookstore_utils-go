@@ -21,6 +21,14 @@ func TestNewInternalServerError(t *testing.T) {
 
 }
 
+func TestNewRestError(t *testing.T) {
+	err := NewRestError("message error", http.StatusInternalServerError, "internal error", nil)
+	assert.NotNil(t, err)
+	assert.EqualValues(t, http.StatusInternalServerError, err.Status)
+	assert.EqualValues(t, "message error", err.Message)
+	assert.EqualValues(t, "internal error", err.Error)
+}
+
 func TestNewBadRequestError(t *testing.T) {
 
 }
